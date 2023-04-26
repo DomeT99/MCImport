@@ -2,6 +2,7 @@
 using MCImport.Utils;
 using Newtonsoft.Json;
 using RestSharp;
+using System.Net;
 
 namespace MCImport.HTTP
 {
@@ -18,12 +19,10 @@ namespace MCImport.HTTP
                 List<Product>? products = JsonConvert.DeserializeObject<List<Product>>(response.Content!);
 
                 return products!;
-
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
-                Console.WriteLine(ex);
-                throw;
+                throw new WebException($"Exception in GetFakeStoreData method: {ex.Message}");
             }
         }
     }

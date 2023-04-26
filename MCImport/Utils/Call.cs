@@ -35,9 +35,9 @@ namespace MCImport.Utils
                 database.SaveChanges();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception($"Exception in Post method: {ex.Message}");
             }
         }
     }

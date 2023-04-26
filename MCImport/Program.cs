@@ -9,22 +9,17 @@ namespace MCImport
         static async Task Main()
         {
 
-            try
-            {
-                List<Product> products = await Request.GetFakeStoreData();
-                Random randomNumber = new();
+            List<Product> products = await Request.GetFakeStoreData();
 
-                products.ForEach(product =>
-                {
-                    product.Quantity = randomNumber.Next(1, 100);
 
-                    Call.Post(product);
-                });
-            }
-            catch (Exception ex)
+            products.ForEach(product =>
             {
-                Console.WriteLine(ex.ToString());
-            }
+                product.Quantity = Utility.GenerateRandomNumber();
+
+                Call.Post(product);
+            });
+
+            Console.WriteLine("Import successfully!");
         }
     }
 }
