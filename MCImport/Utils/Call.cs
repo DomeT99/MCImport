@@ -32,6 +32,8 @@ namespace MCImport.Utils
 
                 await database.Products.AddAsync(product);
 
+                database.SaveChanges();
+
             }
             catch (Exception)
             {
